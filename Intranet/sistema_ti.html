@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistemas TI | Intranet Mapei Colombia</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="https://www.mapei.com/favicon.ico">
+
+    <!-- ICONOS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+
+        /* =========================
+           VARIABLES
+        ========================== */
+
+        :root{
+            --mapei-blue:#007cc3;
+            --mapei-blue-hover:#006eb0;
+            --light-bg:#f4f8fc;
+            --text-dark:#1a1a1a;
+        }
+
+        /* =========================
+           RESET
+        ========================== */
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Segoe UI",Tahoma,sans-serif;
+        }
+
+        body{
+            background:var(--light-bg);
+            color:var(--text-dark);
+            line-height:1.6;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        header{
+            background:var(--mapei-blue);
+            position:sticky;
+            top:0;
+            z-index:99999;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-container{
+            max-width:1400px;
+            margin:auto;
+            padding:18px 25px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .nav-menu{
+            list-style:none;
+            display:flex;
+            align-items:center;
+            gap:14px;
+            flex-wrap:wrap;
+        }
+
+        .nav-item{
+            position:relative;
+        }
+
+        .nav-item::after{
+            content:"";
+            position:absolute;
+            left:0;
+            top:100%;
+            width:100%;
+            height:15px;
+        }
+
+        .nav-link{
+            color:white;
+            text-decoration:none;
+            padding:12px 18px;
+            border-radius:30px;
+            display:flex;
+            align-items:center;
+            gap:8px;
+            font-size:0.95rem;
+            font-weight:600;
+            transition:0.3s;
+            background:none;
+            border:none;
+            cursor:pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link.active{
+            background:rgba(255,255,255,0.18);
+        }
+
+        /* =========================
+           DROPDOWN
+        ========================== */
+
+        .dropdown{
+            position:absolute;
+            top:100%;
+            left:0;
+            width:270px;
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            box-shadow:0 15px 35px rgba(0,0,0,0.15);
+            opacity:0;
+            visibility:hidden;
+            transform:translateY(10px);
+            transition:0.25s ease;
+            z-index:999999;
+        }
+
+        .nav-item:hover .dropdown{
+            opacity:1;
+            visibility:visible;
+            transform:translateY(0);
+        }
+
+        .dropdown a{
+            display:flex;
+            align-items:center;
+            gap:10px;
+            padding:15px 20px;
+            text-decoration:none;
+            color:var(--text-dark);
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .dropdown a:hover{
+            background:#f4f8fc;
+            color:var(--mapei-blue);
+            padding-left:28px;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero{
+            background:
+                linear-gradient(rgba(0,0,0,0.60),
+                rgba(0,0,0,0.60)),
+                url('sistemas-ti.png');
+            background-size:cover;
+            background-position:center;
+            padding: 10px 20px;
+            text-align:center;
+            border-bottom:5px solid var(--mapei-blue-hover);
+        }
+
+        .hero-content{
+            max-width:760px;
+            margin:auto;
+            background:rgba(255,255,255,0.08);
+            backdrop-filter:blur(8px);
+            border-radius:28px;
+            padding:45px 35px;
+            color:white;
+        }
+
+        .hero-icon{
+            width:85px;
+            height:85px;
+            margin:0 auto 20px auto;
+            border-radius:50%;
+            background:rgba(255,255,255,0.12);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:2.5rem;
+            color:white;
+        }
+
+        .hero h1{
+            font-size:2.8rem;
+            margin-bottom:15px;
+        }
+
+        .hero p{
+            font-size:1.08rem;
+        }
+
+        /* =========================
+           CONTENIDO
+        ========================== */
+
+        .container{
+            max-width:1300px;
+            margin:auto;
+            padding:50px 20px;
+        }
+
+        /* =========================
+           BANNER
+        ========================== */
+
+        .action-banner{
+            background:white;
+            border-radius:24px;
+            padding:45px;
+            text-align:center;
+            border:3px solid var(--mapei-blue);
+            box-shadow:0 8px 24px rgba(0,124,195,0.06);
+            margin-bottom:40px;
+        }
+
+        .action-banner h2{
+            margin-bottom:15px;
+            font-size:2rem;
+            color:var(--mapei-blue);
+        }
+
+        .action-banner p{
+            max-width:600px;
+            margin:auto auto 15px auto;
+            color:#444;
+            font-size:1.05rem;
+        }
+
+        .btn-mapedesk{
+            background:var(--mapei-blue);
+            color:white;
+            text-decoration:none;
+            padding:15px 40px;
+            border-radius:30px;
+            font-weight:600;
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            transition:0.3s;
+        }
+
+        .btn-mapedesk:hover{
+            background:var(--mapei-blue-hover);
+            transform:translateY(-2px);
+        }
+
+        /* =========================
+           SERVICIOS
+        ========================== */
+
+        .services-grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:25px;
+            margin-bottom:50px;
+        }
+
+        .service-card{
+            background:white;
+            border-radius:20px;
+            padding:30px;
+            box-shadow:0 5px 18px rgba(0,0,0,0.05);
+            transition:0.3s;
+        }
+
+        .service-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .service-icon{
+            width:75px;
+            height:75px;
+            border-radius:50%;
+            background:#e8f5ff;
+            color:var(--mapei-blue);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:2rem;
+            margin-bottom:20px;
+        }
+
+        .service-card h3{
+            color:var(--mapei-blue);
+            margin-bottom:10px;
+        }
+
+        /* =========================
+           MODERNIZACION
+        ========================== */
+
+        .modernization{
+            background:white;
+            border-radius:24px;
+            overflow:hidden;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            margin-bottom:50px;
+            box-shadow:0 5px 18px rgba(0,0,0,0.05);
+        }
+
+        .modernization-info{
+            padding:45px;
+        }
+
+        .modernization-info h2{
+            color:var(--mapei-blue);
+            margin-bottom:15px;
+        }
+
+        .modernization-info p{
+            margin-bottom:12px;
+            color:#444;
+        }
+
+        .modernization-images{
+            background:#edf4fa;
+            padding:30px;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+
+        .image-card{
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            transition:0.3s;
+            text-decoration:none;
+        }
+
+        .image-card:hover{
+            transform:translateY(-4px);
+        }
+
+        .image-card img{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .image-label{
+            padding:15px;
+            text-align:center;
+            color:var(--mapei-blue);
+            font-weight:700;
+        }
+
+        /* =========================
+           EQUIPO TI
+        ========================== */
+
+        .team-section{
+            background:white;
+            border-radius:24px;
+            padding:45px 30px;
+            box-shadow:0 5px 18px rgba(0,0,0,0.05);
+        }
+
+        .section-title{
+            text-align:center;
+            color:var(--mapei-blue);
+            font-size:2rem;
+            margin-bottom:10px;
+        }
+
+        .section-subtitle{
+            text-align:center;
+            color:#555;
+            margin-bottom:40px;
+        }
+
+        .team-container{
+            display:flex;
+            flex-direction:column;
+            gap:25px;
+        }
+
+        /* FILA SUPERIOR */
+
+        .team-row-top{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:25px;
+        }
+
+        /* FILA INFERIOR */
+
+        .team-row-bottom{
+            display:flex;
+            justify-content:center;
+            gap:25px;
+        }
+
+        .team-row-bottom .team-card{
+            width:calc(25% - 19px);
+        }
+
+        .team-card{
+            background:#f4f8fc;
+            border-radius:18px;
+            padding:25px 20px;
+            text-align:center;
+            transition:0.3s;
+        }
+
+        .team-card:hover{
+            transform:translateY(-4px);
+        }
+
+        .avatar{
+            width:95px;
+            height:95px;
+            border-radius:50%;
+            overflow:hidden;
+            margin:0 auto 15px auto;
+            background:#dbe7f2;
+        }
+
+        .avatar img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        .team-card h3{
+            color:var(--mapei-blue);
+            margin-bottom:5px;
+            font-size:1rem;
+        }
+
+        .team-card p{
+            color:#666;
+            font-size:0.88rem;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer{
+            background:var(--mapei-blue);
+            color:white;
+            text-align:center;
+            padding:25px;
+            margin-top:60px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media(max-width:1100px){
+
+            .services-grid{
+                grid-template-columns:1fr;
+            }
+
+            .modernization{
+                grid-template-columns:1fr;
+            }
+
+            .team-row-top{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .team-row-bottom{
+                flex-wrap:wrap;
+            }
+
+            .team-row-bottom .team-card{
+                width:calc(50% - 13px);
+            }
+        }
+
+        @media(max-width:768px){
+
+            .nav-menu{
+                flex-direction:column;
+            }
+
+            .dropdown{
+                position:static;
+                width:100%;
+                margin-top:10px;
+                opacity:1;
+                visibility:visible;
+                transform:none;
+                display:none;
+            }
+
+            .nav-item:hover .dropdown{
+                display:block;
+            }
+
+            .team-row-top{
+                grid-template-columns:1fr;
+            }
+
+            .team-row-bottom{
+                flex-direction:column;
+            }
+
+            .team-row-bottom .team-card{
+                width:100%;
+            }
+
+            .modernization-images{
+                grid-template-columns:1fr;
+            }
+
+            .hero h1{
+                font-size:2rem;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header>
+
+        <div class="nav-container">
+
+            <ul class="nav-menu">
+
+                <li>
+                    <a href="hseq.html" class="nav-link">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        HSEQ
+                    </a>
+                </li>
+
+                <li class="nav-item">
+
+                    <button class="nav-link active">
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                        Finanzas
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </button>
+
+                    <div class="dropdown">
+
+                        <a href="contabilidad.html">
+                            <i class="fa-solid fa-calculator"></i>
+                            Contabilidad
+                        </a>
+
+                        <a href="finanzas.html">
+                            <i class="fa-solid fa-coins"></i>
+                            Finanzas
+                        </a>
+
+                        <a href="tesoreria.html">
+                            <i class="fa-solid fa-building-columns"></i>
+                            Tesorería
+                        </a>
+
+                        <a href="cartera.html">
+                            <i class="fa-solid fa-percent"></i>
+                            Cartera
+                        </a>
+
+                        <a href="servicios_compartidos.html">
+                            <i class="fa-solid fa-broom"></i>
+                            Servicios Compartidos
+                        </a>
+
+                        <a href="sistema_ti.html">
+                            <i class="fa-solid fa-desktop"></i>
+                            Sistemas TI
+                        </a>
+
+                    </div>
+
+                </li>
+
+                <li>
+                    <a href="juridica.html" class="nav-link">
+                        <i class="fa-solid fa-gavel"></i>
+                        Jurídica
+                    </a>
+                </li>
+
+                <li>
+                    <a href="mercadeo.html" class="nav-link">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        Mercadeo
+                    </a>
+                </li>
+
+                <li>
+                    <a href="operaciones.html" class="nav-link">
+                        <i class="fa-solid fa-gears"></i>
+                        Operaciones
+                    </a>
+                </li>
+
+                <li>
+                    <a href="rrhh.html" class="nav-link">
+                        <i class="fa-solid fa-users"></i>
+                        RRHH
+                    </a>
+                </li>
+
+                <li>
+                    <a href="ventas.html" class="nav-link">
+                        <i class="fa-solid fa-comments-dollar"></i>
+                        Ventas
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-icon">
+                <i class="fa-solid fa-laptop-code"></i>
+            </div>
+
+            <h1>Sistemas TI</h1>
+
+            <p>
+                Guiados por nuestro pilar de gestionar y servir.
+                Aseguramos la continuidad, disponibilidad e innovación
+                de los recursos e infraestructura tecnológica de Mapei Colombia.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- CONTENIDO -->
+
+    <div class="container">
+
+        <!-- BANNER -->
+
+        <div class="action-banner">
+
+            <h2>¿Tienes un requerimiento de tecnología?</h2>
+
+            <p>
+                Reporta fallas de conectividad, incidentes con herramientas
+                informáticas o solicitudes de soporte a través de nuestra
+                mesa oficial.
+            </p>
+
+            <a href="https://mapedesk.mapei.com/CustomerPortal/#/Page/HOME@folder-ROOT"
+               target="_blank"
+               class="btn-mapedesk">
+
+                <i class="fa-solid fa-headset"></i>
+
+                Ingresar a Mapedesk
+
+            </a>
+
+        </div>
+
+        <!-- SERVICIOS -->
+
+        <div class="services-grid">
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-wifi"></i>
+                </div>
+
+                <h3>Conectividad y Redes</h3>
+
+                <p>
+                    Administración de redes LAN/WIFI corporativas
+                    y enlaces dedicados.
+                </p>
+
+            </div>
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+
+                <h3>Herramientas Tecnológicas</h3>
+
+                <p>
+                    Gestión de Microsoft 365, accesos,
+                    licencias y plataformas corporativas.
+                </p>
+
+            </div>
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <h3>Seguridad Informática</h3>
+
+                <p>
+                    Antivirus corporativo, respaldos
+                    y soporte técnico integral.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- MODERNIZACION -->
+
+        <div class="modernization">
+
+            <div class="modernization-info">
+
+                <h2>
+                    <i class="fa-solid fa-server"></i>
+                    Modernización de Infraestructura
+                </h2>
+
+                <p>
+                    Optimización y monitoreo continuo
+                    de cuartos de datos y racks tecnológicos.
+                </p>
+
+                <p>
+                    Gestión avanzada de cableado estructurado,
+                    climatización y estabilidad de servicios críticos.
+                </p>
+
+            </div>
+
+            <div class="modernization-images">
+
+                <a href="#" class="image-card">
+
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80">
+
+                    <div class="image-label">
+                        Antes
+                    </div>
+
+                </a>
+
+                <a href="#" class="image-card">
+
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80">
+
+                    <div class="image-label">
+                        Después
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- EQUIPO -->
+
+        <section class="team-section">
+
+            <h2 class="section-title">
+                Nuestro Equipo TI
+            </h2>
+
+            <p class="section-subtitle">
+                Profesionales comprometidos con el soporte operativo
+                y el acompañamiento tecnológico.
+            </p>
+
+            <div class="team-container">
+
+                <!-- FILA SUPERIOR -->
+
+                <div class="team-row-top">
+
+                    <div class="team-card">
+
+                        <div class="avatar">
+                            <img src="img/equipo/avatar-placeholder.png">
+                        </div>
+
+                        <h3>Technology Coordinator</h3>
+
+                        <p>IT</p>
+
+                    </div>
+
+                    <div class="team-card">
+
+                        <div class="avatar">
+                            <img src="img/equipo/avatar-placeholder.png">
+                        </div>
+
+                        <h3>Technology Analyst</h3>
+
+                        <p>IT</p>
+
+                    </div>
+
+                    <div class="team-card">
+
+                        <div class="avatar">
+                            <img src="img/equipo/avatar-placeholder.png">
+                        </div>
+
+                        <h3>Technology Analyst</h3>
+
+                        <p>IT</p>
+
+                    </div>
+
+                    <div class="team-card">
+
+                        <div class="avatar">
+                            <img src="img/equipo/avatar-placeholder.png">
+                        </div>
+
+                        <h3>Technology Intern</h3>
+
+                        <p>IT</p>
+
+                    </div>
+
+                </div>
+
+                <!-- FILA INFERIOR -->
+
+                <div class="team-row-bottom">
+
+                    <div class="team-card">
+
+                        <div class="avatar">
+                            <img src="img/equipo/avatar-placeholder.png">
+                        </div>
+
+                        <h3>Technology Intern</h3>
+
+                        <p>IT</p>
+
+                    </div>
+
+                    <div class="team-card">
+
+                        <div class="avatar">
+                            <img src="img/equipo/avatar-placeholder.png">
+                        </div>
+
+                        <h3>Technology Intern</h3>
+
+                        <p>IT</p>
+
+                    </div>
+
+                    <div class="team-card">
+
+                        <div class="avatar">
+                            <img src="img/equipo/avatar-placeholder.png">
+                        </div>
+
+                        <h3>Technology Intern</h3>
+
+                        <p>IT</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+        © 2026 Mapei Colombia · Área Financiera · Área TI
+    </footer>
+
+</body>
+
+</html>

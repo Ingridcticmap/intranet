@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contabilidad | Intranet Mapei Colombia</title>
+
+    <!-- ICONO -->
+    <link rel="icon" type="image/png" href="https://www.mapei.com/favicon.ico">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --mapei-blue: #007cc3;
+            --mapei-light: #f4f8fc;
+            --text-dark: #1a1a1a;
+            --white: #ffffff;
+            --contabilidad-color: #007cc3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            background: var(--mapei-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* =================================
+           NAVBAR
+        ================================= */
+
+        header {
+            background: var(--mapei-blue);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1350px;
+            margin: auto;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 10px 16px;
+            border-radius: 20px;
+            transition: 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* =================================
+           DROPDOWN
+        ================================= */
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 10px 0;
+            min-width: 220px;
+            display: none;
+            border: 1px solid #e2e8f0;
+            margin-top: 8px;
+        }
+
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .dropdown a:hover {
+            background: var(--mapei-light);
+            color: var(--mapei-blue);
+            padding-left: 25px;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        /* =================================
+           HERO CONTABILIDAD
+        ================================= */
+
+        .hero-contabilidad {
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.55)),
+                url('contabilidad.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 5px solid var(--contabilidad-color);
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 28px;
+            padding: 50px 35px;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 25px auto;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #007cc3;
+        }
+
+        .hero-icon i {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .hero-content h1 {
+            color: white;
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1.08rem;
+            line-height: 1.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 24px;
+            padding: 55px 45px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            text-align: center;
+        }
+
+        .content-section h2 {
+            color: var(--mapei-blue);
+            font-size: 2.3rem;
+            margin-bottom: 25px;
+        }
+
+        .content-section p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 22px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* =================================
+           TARJETAS
+        ================================= */
+
+        .functions-grid {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .function-card {
+            background: #f8fbff;
+            border-radius: 20px;
+            padding: 30px 25px;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s ease;
+            text-align: center;
+        }
+
+        .function-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .function-card i {
+            font-size: 2.2rem;
+            color: var(--contabilidad-color);
+            margin-bottom: 18px;
+        }
+
+        .function-card h3 {
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+            color: #111827;
+        }
+
+        .function-card p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* =================================
+           FOOTER
+        ================================= */
+
+        footer {
+            background: var(--mapei-blue);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 900px) {
+
+            .functions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+
+            .content-section {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="nav-container">
+
+            <ul class="nav-menu">
+
+                <li>
+                    <a href="index.html" class="nav-link">
+                        <i class="fa-solid fa-house"></i>
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="hseq.html" class="nav-link">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        HSEQ
+                    </a>
+                </li>
+
+                <li class="nav-item">
+
+                    <a href="finanzas.html" class="nav-link active">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        Finanzas
+                        <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+                    </a>
+
+                    <div class="dropdown">
+
+                        <a href="contabilidad.html">
+                            <i class="fa-solid fa-calculator"></i>
+                            Contabilidad
+                        </a>
+
+                        <a href="tesoreria.html">
+                            <i class="fa-solid fa-building-columns"></i>
+                            Tesorería
+                        </a>
+
+                        <a href="sistemas_ti.html">
+                            <i class="fa-solid fa-desktop"></i>
+                            Sistemas TI
+                        </a>
+
+                        <a href="cartera.html">
+                            <i class="fa-solid fa-percent"></i>
+                            Cartera
+                        </a>
+
+                        <a href="servicios_compartidos.html">
+                            <i class="fa-solid fa-broom"></i>
+                            Servicios Compartidos
+                        </a>
+
+                    </div>
+
+                </li>
+
+                <li>
+                    <a href="juridica.html" class="nav-link">
+                        <i class="fa-solid fa-gavel"></i>
+                        Jurídica
+                    </a>
+                </li>
+
+                <li>
+                    <a href="mercadeo.html" class="nav-link">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        Mercadeo
+                    </a>
+                </li>
+
+                <li>
+                    <a href="operaciones.html" class="nav-link">
+                        <i class="fa-solid fa-gears"></i>
+                        Operaciones
+                    </a>
+                </li>
+
+                <li>
+                    <a href="rrhh.html" class="nav-link">
+                        <i class="fa-solid fa-users"></i>
+                        RRHH
+                    </a>
+                </li>
+
+                <li>
+                    <a href="ventas.html" class="nav-link">
+                        <i class="fa-solid fa-comments-dollar"></i>
+                        Ventas
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-contabilidad">
+
+        <div class="hero-content">
+
+            <div class="hero-icon">
+                <i class="fa-solid fa-calculator"></i>
+            </div>
+
+            <h1>Contabilidad</h1>
+
+            <p>
+                Gestionamos la información financiera y contable de la compañía,
+                garantizando transparencia, control, cumplimiento normativo
+                y soporte estratégico para la toma de decisiones.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- CONTENIDO -->
+    <div class="container">
+
+        <div class="content-section">
+
+            <h2>Nuestro enfoque contable</h2>
+
+            <p>
+                El área de Contabilidad en MAPEI Colombia tiene como propósito
+                asegurar el adecuado registro, análisis y control de todas las
+                operaciones financieras de la compañía, cumpliendo con las
+                normas contables y fiscales vigentes.
+            </p>
+
+            <p>
+                Trabajamos de manera articulada con las diferentes áreas de la
+                organización para garantizar procesos eficientes, información
+                confiable y soporte estratégico para el crecimiento sostenible
+                de la empresa.
+            </p>
+
+            <!-- TARJETAS -->
+            <div class="functions-grid">
+
+                <div class="function-card">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                    <h3>Estados Financieros</h3>
+
+                    <p>
+                        Elaboración y análisis de reportes financieros corporativos.
+                    </p>
+                </div>
+
+                <div class="function-card">
+                    <i class="fa-solid fa-scale-balanced"></i>
+
+                    <h3>Control Fiscal</h3>
+
+                    <p>
+                        Gestión tributaria y cumplimiento de obligaciones legales.
+                    </p>
+                </div>
+
+                <div class="function-card">
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <h3>Análisis Financiero</h3>
+
+                    <p>
+                        Seguimiento de indicadores financieros y contables.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Mapei Colombia · Área de Contabilidad
+    </footer>
+
+</body>
+
+</html>

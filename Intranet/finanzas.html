@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finanzas | Intranet Mapei Colombia</title>
+
+    <link rel="icon" type="image/png" href="https://www.mapei.com/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --mapei-blue: #007cc3;
+            --mapei-blue-hover: #006eb0;
+            --mapei-light: #f4f8fc;
+            --text-dark: #1a1a1a;
+            --white: #ffffff;
+            --finance-gold: #f39c12;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--mapei-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* =================================
+           NAVBAR
+        ================================= */
+
+        header {
+            background: var(--mapei-blue);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1350px;
+            margin: auto;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 10px 16px;
+            border-radius: 20px;
+            transition: 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* =================================
+           DROPDOWN
+        ================================= */
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            padding: 10px 0;
+            min-width: 220px;
+            display: none;
+            border: 1px solid #e2e8f0;
+            margin-top: 8px;
+        }
+
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .dropdown a:hover {
+            background: var(--mapei-light);
+            color: var(--mapei-blue);
+            padding-left: 25px;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        /* =================================
+           HERO FINANZAS
+        ================================= */
+
+        .hero-finance {
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.55)),
+                url('finanzas.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 5px solid var(--finance-gold);
+        }
+
+        .hero-overlay {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 28px;
+            padding: 45px 25px;
+            max-width: 580px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            transition: 0.3s ease;
+        }
+
+        .hero-icon {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 22px auto;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-icon i {
+            font-size: 2.8rem;
+            color: var(--finance-gold);
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-content h1 {
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1.08rem;
+            line-height: 1.8;
+            max-width: 680px;
+            margin: auto;
+        }
+
+        /* =================================
+           CONTAINER PRINCIPAL
+        ================================= */
+
+        .container {
+            max-width: 1350px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        /* =================================
+           SECCIÓN: IMAGEN + INFORMACIÓN
+        ================================= */
+
+        .finance-intro-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            margin-bottom: 40px;
+        }
+
+        .finance-intro-img {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .finance-intro-img img {
+            width: 100%;
+            height: 220px;
+            border-radius: 16px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .finance-intro-text {
+            flex: 1;
+        }
+
+        .finance-intro-text h2 {
+            color: var(--mapei-blue);
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .finance-intro-text p {
+            color: #555555;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* =================================
+           TARJETAS
+        ================================= */
+
+        .finance-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            /* Forzar las 5 tarjetas en una fila */
+            gap: 15px;
+            /* Reducido un poco para que entren cómodamente en pantallas normales */
+        }
+
+        .finance-card {
+            background: var(--white);
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .finance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+            border-color: var(--mapei-blue);
+        }
+
+        .finance-icon-wrapper {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 15px;
+        }
+
+        .icon-contabilidad {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .icon-tesoreria {
+            background: #fffbeb;
+            color: #d97706;
+        }
+
+        .icon-ti {
+            background: #ecfdf5;
+            color: #059669;
+        }
+
+        .icon-cartera {
+            background: #fdf2f8;
+            color: #db2777;
+        }
+
+        .icon-servicios {
+            background: #f0fdfa;
+            color: #0d9488;
+        }
+
+        .finance-card h3 {
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .finance-card p {
+            font-size: 0.88rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* =================================
+           FOOTER
+        ================================= */
+
+        footer {
+            background: var(--mapei-blue);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 1200px) {
+
+            /* En pantallas medianas rompe a 3 y 2 columnas para no perder legibilidad */
+            .finance-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .finance-intro-section {
+                flex-direction: column;
+                padding: 30px;
+                text-align: center;
+            }
+
+            .finance-intro-img {
+                max-width: 100%;
+            }
+
+            .finance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-finance {
+                padding: 50px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .finance-intro-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .finance-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li><a href="hseq.html" class="nav-link"><i class="fa-solid fa-shield-halved"></i> HSEQ</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="fa-solid fa-chart-pie"></i> Finanzas
+                        <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a href="contabilidad.html"><i class="fa-solid fa-calculator"></i> Contabilidad</a>
+                        <a href="tesoreria.html"><i class="fa-solid fa-building-columns"></i> Tesorería</a>
+                        <a href="sistemas_ti.html"><i class="fa-solid fa-desktop"></i> Sistemas TI</a>
+                        <a href="cartera.html"><i class="fa-solid fa-percent"></i> Cartera</a>
+                        <a href="servicios_compartidos.html"><i class="fa-solid fa-broom"></i> Servicios Compartidos</a>
+                    </div>
+                </li>
+                <li><a href="juridica.html" class="nav-link"><i class="fa-solid fa-gavel"></i> Jurídica</a></li>
+                <li><a href="mercadeo.html" class="nav-link"><i class="fa-solid fa-bullhorn"></i> Mercadeo</a></li>
+                <li><a href="operaciones.html" class="nav-link"><i class="fa-solid fa-gears"></i> Operaciones</a></li>
+                <li><a href="rrhh.html" class="nav-link"><i class="fa-solid fa-users"></i> RRHH</a></li>
+                <li><a href="ventas.html" class="nav-link"><i class="fa-solid fa-comments-dollar"></i> Ventas</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO FINANZAS -->
+    <section class="hero-finance">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+                <h1>Área de finanzas</h1>
+                <p>
+                    Garantizando la estabilidad económica, optimización de recursos,
+                    soporte tecnológico y transparencia operativa en MAPEI Colombia.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="container">
+
+        <!-- SECCIÓN IMAGEN FINANCE + INFORMACIÓN CORPORATIVA -->
+        <div class="finance-intro-section">
+            <div class="finance-intro-img">
+                <img src="finance.png" alt="Finanzas Corporativas MAPEI">
+            </div>
+            <div class="finance-intro-text">
+                <h2>Finanzas de la mano de nuestras subáreas</h2>
+                <p>
+                    A través de una gestión integral y transversal, nuestro equipo trabaja diariamente para asegurar la
+                    salud financiera de la compañía. Cada una de nuestras áreas especializadas aporta valor estratégico
+                    en el control de recursos, soluciones tecnológicas y optimización de procesos internos para el
+                    crecimiento sostenible de MAPEI Colombia.
+                </p>
+            </div>
+        </div>
+
+        <!-- SUBÁREAS (5 TARJETAS EN UNA SOLA LÍNEA HORIZONTAL) -->
+        <div class="finance-grid">
+
+            <!-- Contabilidad -->
+            <a href="contabilidad.html" class="finance-card">
+                <div class="finance-icon-wrapper icon-contabilidad">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <h3>Contabilidad</h3>
+                <p>Estados financieros, obligaciones fiscales y auditoría patrimonial.</p>
+            </a>
+
+            <!-- Tesorería -->
+            <a href="tesoreria.html" class="finance-card">
+                <div class="finance-icon-wrapper icon-tesoreria">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <h3>Tesorería</h3>
+                <p>Flujos de caja, operaciones bancarias y relaciones con proveedores.</p>
+            </a>
+
+            <!-- Sistemas TI -->
+            <a href="sistemas_ti.html" class="finance-card">
+                <div class="finance-icon-wrapper icon-ti">
+                    <i class="fa-solid fa-desktop"></i>
+                </div>
+                <h3>Sistemas TI</h3>
+                <p>Infraestructura digital, soporte de red corporativa y software ERP.</p>
+            </a>
+
+            <!-- Cartera -->
+            <a href="cartera.html" class="finance-card">
+                <div class="finance-icon-wrapper icon-cartera">
+                    <i class="fa-solid fa-percent"></i>
+                </div>
+                <h3>Cartera</h3>
+                <p>Análisis de crédito para clientes, recaudos y conciliaciones fiscales.</p>
+            </a>
+
+            <!-- Servicios Compartidos -->
+            <a href="servicios_compartidos.html" class="finance-card">
+                <div class="finance-icon-wrapper icon-servicios">
+                    <i class="fa-solid fa-broom"></i>
+                </div>
+                <h3>Servicios Compartidos</h3>
+                <p>Eficiencia en procesos transversales y soporte centralizado corporativo.</p>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Mapei Colombia · Intranet Corporativa
+    </footer>
+
+</body>
+
+</html>

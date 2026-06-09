@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jurídica | Intranet Mapei Colombia</title>
+
+<link rel="icon" type="image/png" href="https://www.mapei.com/favicon.ico">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+:root{
+    --mapei-blue:#007cc3;
+    --mapei-blue-hover:#006eb0;
+    --light-bg:#f4f8fc;
+    --text-dark:#1a1a1a;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Tahoma,sans-serif;
+}
+
+body{
+    background:var(--light-bg);
+    color:var(--text-dark);
+    line-height:1.6;
+}
+
+/* =========================
+   NAVBAR
+========================== */
+
+header{
+    background:var(--mapei-blue);
+    position:sticky;
+    top:0;
+    z-index:9999;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.nav-container{
+    max-width:1400px;
+    margin:auto;
+    padding:18px 25px;
+    display:flex;
+    justify-content:center;
+}
+
+.nav-menu{
+    list-style:none;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    align-items:center;
+}
+
+.nav-item{
+    position:relative;
+}
+
+.nav-link{
+    color:white;
+    text-decoration:none;
+    padding:12px 18px;
+    border-radius:30px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:.95rem;
+    font-weight:600;
+    transition:.3s;
+}
+
+.nav-link:hover,
+.nav-link.active{
+    background:rgba(255,255,255,.18);
+}
+
+.dropdown{
+    position:absolute;
+    top:110%;
+    left:0;
+    width:260px;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    display:none;
+    z-index:99999;
+}
+
+.nav-item:hover .dropdown{
+    display:block;
+}
+
+.dropdown a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 20px;
+    text-decoration:none;
+    color:var(--text-dark);
+    font-weight:600;
+    transition:.3s;
+}
+
+.dropdown a:hover{
+    background:#f4f8fc;
+    color:var(--mapei-blue);
+    padding-left:28px;
+}
+
+/* =========================
+   HERO
+========================== */
+
+.hero{
+    background:
+    linear-gradient(rgba(0,0,0,.60),
+    rgba(0,0,0,.60)),
+    url('juridica.png');
+
+    background-size:cover;
+    background-position:center;
+    padding:10px 20px;
+    text-align:center;
+    border-bottom:5px solid var(--mapei-blue);
+}
+
+.hero-content{
+    max-width:760px;
+    margin:auto;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(8px);
+    border-radius:28px;
+    padding:45px 35px;
+    color:white;
+}
+
+.hero-icon{
+    width:85px;
+    height:85px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2.4rem;
+}
+
+.hero h1{
+    font-size:2.8rem;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:1.08rem;
+}
+
+/* =========================
+   CONTENIDO
+========================== */
+
+.container{
+    max-width:1350px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+.intro-card{
+    background:white;
+    border-radius:24px;
+    padding:40px;
+    text-align:center;
+    margin-bottom:40px;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+
+.intro-card h2{
+    color:var(--mapei-blue);
+    margin-bottom:15px;
+}
+
+.intro-card p{
+    max-width:900px;
+    margin:auto;
+}
+
+/* =========================
+   TARJETAS
+========================== */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card-icon{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#e8f5ff;
+    color:var(--mapei-blue);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+.card h3{
+    color:var(--mapei-blue);
+    margin-bottom:12px;
+}
+
+.card ul{
+    padding-left:18px;
+}
+
+.card li{
+    margin-bottom:8px;
+    font-size:.92rem;
+}
+
+/* =========================
+   FOOTER
+========================== */
+
+footer{
+    background:var(--mapei-blue);
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:60px;
+}
+
+/* =========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1100px){
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:768px){
+
+    .nav-menu{
+        flex-direction:column;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:2rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="nav-container">
+
+<ul class="nav-menu">
+
+<li>
+<a href="hseq.html" class="nav-link">
+<i class="fa-solid fa-shield-halved"></i>
+HSEQ
+</a>
+</li>
+
+<li class="nav-item">
+
+<a class="nav-link">
+<i class="fa-solid fa-chart-pie"></i>
+Finanzas
+<i class="fa-solid fa-chevron-down"></i>
+</a>
+
+<div class="dropdown">
+
+<a href="contabilidad.html">
+<i class="fa-solid fa-calculator"></i>
+Contabilidad
+</a>
+
+<a href="finanzas.html">
+<i class="fa-solid fa-coins"></i>
+Finanzas
+</a>
+
+<a href="tesoreria.html">
+<i class="fa-solid fa-building-columns"></i>
+Tesorería
+</a>
+
+<a href="cartera.html">
+<i class="fa-solid fa-percent"></i>
+Cartera
+</a>
+
+<a href="servicios_compartidos.html">
+<i class="fa-solid fa-broom"></i>
+Servicios Compartidos
+</a>
+
+<a href="sistema_ti.html">
+<i class="fa-solid fa-desktop"></i>
+Sistemas TI
+</a>
+
+</div>
+
+</li>
+
+<li>
+<a href="juridica.html" class="nav-link active">
+<i class="fa-solid fa-gavel"></i>
+Jurídica
+</a>
+</li>
+
+<li>
+<a href="mercadeo.html" class="nav-link">
+<i class="fa-solid fa-bullhorn"></i>
+Mercadeo
+</a>
+</li>
+
+<li>
+<a href="operaciones.html" class="nav-link">
+<i class="fa-solid fa-gears"></i>
+Operaciones
+</a>
+</li>
+
+<li>
+<a href="rrhh.html" class="nav-link">
+<i class="fa-solid fa-users"></i>
+RRHH
+</a>
+</li>
+
+<li>
+<a href="ventas.html" class="nav-link">
+<i class="fa-solid fa-comments-dollar"></i>
+Ventas
+</a>
+</li>
+
+</ul>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="hero-icon">
+<i class="fa-solid fa-scale-balanced"></i>
+</div>
+
+<h1>Área Jurídica</h1>
+
+<p>
+Garantizamos el cumplimiento normativo,
+la gestión contractual y la protección
+de los intereses legales de MAPEI Colombia.
+</p>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="intro-card">
+
+<h2>Asesoría Legal Corporativa</h2>
+
+<p>
+Brindamos acompañamiento integral a todas las áreas de la compañía,
+asegurando el cumplimiento legal, la gestión de riesgos y la protección
+de los intereses corporativos de MAPEI Colombia.
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-icon">
+<i class="fa-solid fa-file-signature"></i>
+</div>
+
+<h3>Contratación</h3>
+
+<ul>
+<li>Contratos comerciales</li>
+<li>Acuerdos con proveedores</li>
+<li>Convenios de confidencialidad</li>
+<li>Documentación contractual</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">
+<i class="fa-solid fa-building-shield"></i>
+</div>
+
+<h3>Corporativo</h3>
+
+<ul>
+<li>Gobierno corporativo</li>
+<li>Compliance</li>
+<li>Representación legal</li>
+<li>Propiedad intelectual</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">
+<i class="fa-solid fa-triangle-exclamation"></i>
+</div>
+
+<h3>Litigios y Riesgos</h3>
+
+<ul>
+<li>Prevención de riesgos</li>
+<li>Procesos judiciales</li>
+<li>Arbitrajes</li>
+<li>Resolución de conflictos</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">
+<i class="fa-solid fa-users-gear"></i>
+</div>
+
+<h3>Laboral</h3>
+
+<ul>
+<li>Relaciones laborales</li>
+<li>Seguridad social</li>
+<li>Normatividad laboral</li>
+<li>Soporte a RRHH</li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Mapei Colombia · Área Jurídica
+</footer>
+
+</body>
+</html>

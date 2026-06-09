@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartera | Intranet Mapei Colombia</title>
+    <link rel="icon" type="image/png" href="https://www.mapei.com/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --mapei-blue: #007cc3;
+            --mapei-blue-hover: #006eb0;
+            --light-bg: #f4f8fc;
+            --green: #27ae60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            background: var(--light-bg);
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--mapei-blue);
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .dropdown-btn {
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 260px;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+            display: none;
+            z-index: 99999;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .dropdown a:hover {
+            background: #f2f7fc;
+            color: var(--mapei-blue);
+            padding-left: 28px;
+        }
+
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)), url('cartera.png');
+            background-size: cover;
+            background-position: center;
+            padding: 10px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--green);
+        }
+
+        .hero-content {
+            max-width: 720px;
+            margin: auto;
+            background: rgba(255, 255, 255, .08);
+            backdrop-filter: blur(8px);
+            padding: 45px;
+            border-radius: 28px;
+            color: #fff;
+        }
+
+        .hero-icon {
+            width: 90px;
+            height: 90px;
+            margin: auto auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, .12);
+            font-size: 2.5rem;
+            color: #27ae60;
+        }
+
+        .container {
+            max-width: 1350px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, .05);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: #eaf8ef;
+            color: #27ae60;
+        }
+
+        .support-card {
+            margin-top: 50px;
+            background: #fff;
+            border: 3px solid var(--mapei-blue);
+            border-radius: 24px;
+            padding: 45px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            background: var(--mapei-blue);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
+        footer {
+            background: var(--mapei-blue);
+            color: #fff;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media(max-width:1100px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:768px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+            }
+
+            .dropdown {
+                position: static;
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+        <div class="nav-container">
+
+            <ul class="nav-menu">
+
+                <!-- HSEQ -->
+                <li>
+                    <a href="hseq.html" class="nav-link">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        HSEQ
+                    </a>
+                </li>
+
+                <!-- FINANZAS -->
+                <li class="nav-item">
+
+                    <div class="nav-link dropdown-btn active">
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                        Finanzas
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </div>
+
+                    <div class="dropdown">
+
+                        <a href="contabilidad.html">
+                            <i class="fa-solid fa-calculator"></i>
+                            Contabilidad
+                        </a>
+
+                        <a href="finanzas.html">
+                            <i class="fa-solid fa-coins"></i>
+                            Finanzas
+                        </a>
+
+                        <a href="tesoreria.html">
+                            <i class="fa-solid fa-building-columns"></i>
+                            Tesorería
+                        </a>
+
+                        <a href="cartera.html">
+                            <i class="fa-solid fa-percent"></i>
+                            Cartera
+                        </a>
+
+                        <a href="servicios_compartidos.html">
+                            <i class="fa-solid fa-broom"></i>
+                            Servicios Compartidos
+                        </a>
+
+                        <a href="sistema_ti.html">
+                            <i class="fa-solid fa-desktop"></i>
+                            Sistemas TI
+                        </a>
+
+                    </div>
+
+                </li>
+
+                <!-- JURIDICA -->
+                <li>
+                    <a href="juridica.html" class="nav-link">
+                        <i class="fa-solid fa-gavel"></i>
+                        Jurídica
+                    </a>
+                </li>
+
+                <!-- MERCADEO -->
+                <li>
+                    <a href="mercadeo.html" class="nav-link">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        Mercadeo
+                    </a>
+                </li>
+
+                <!-- OPERACIONES -->
+                <li>
+                    <a href="operaciones.html" class="nav-link">
+                        <i class="fa-solid fa-gears"></i>
+                        Operaciones
+                    </a>
+                </li>
+
+                <!-- RRHH -->
+                <li>
+                    <a href="rrhh.html" class="nav-link">
+                        <i class="fa-solid fa-users"></i>
+                        RRHH
+                    </a>
+                </li>
+
+                <!-- VENTAS -->
+                <li>
+                    <a href="ventas.html" class="nav-link">
+                        <i class="fa-solid fa-comments-dollar"></i>
+                        Ventas
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-icon"><i class="fa-solid fa-percent"></i></div>
+            <h1>Cartera</h1>
+            <p>Gestionamos el seguimiento y recuperación de cartera, asegurando el cumplimiento de los compromisos
+                financieros y fortaleciendo el flujo de caja de Mapei Colombia.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-users"></i></div>
+                <h3>Seguimiento de Clientes</h3>
+                <p>Monitoreo permanente de saldos pendientes y estados de cuenta.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <h3>Gestión de Cobranza</h3>
+                <p>Procesos de recaudo y recuperación de cartera.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <h3>Análisis de Cartera</h3>
+                <p>Control de vencimientos e indicadores financieros.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-file-signature"></i></div>
+                <h3>Acuerdos de Pago</h3>
+                <p>Seguimiento a compromisos establecidos con clientes.</p>
+            </div>
+        </div>
+
+        <div class="support-card">
+            <h2>¿Necesitas apoyo del área de Cartera?</h2>
+            <p>Gestionamos consultas relacionadas con estados de cuenta, pagos pendientes y acuerdos de pago.</p>
+            <a href="pag_const.html" class="btn">Solicitar soporte de Cartera</a>
+        </div>
+    </div>
+
+    <footer>© 2026 Mapei Colombia · Área Financiera · Cartera</footer>
+</body>
+
+</html>

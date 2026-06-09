@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mercadeo | Intranet Mapei Colombia</title>
+
+    <link rel="icon" type="image/png" href="https://www.mapei.com/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --mapei-blue: #007CC3;
+            --mapei-light: #f4f7fb;
+            --mapei-navy: #003366;
+            --mapei-gray: #757575;
+            --mapei-accent: #ffb74d;
+            --text-dark: #333;
+
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: var(--mapei-light);
+            color: var(--text-dark);
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        header {
+            background: var(--mapei-blue);
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 6px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        /* =========================
+           DROPDOWN FINANZAS 
+        ========================== */
+
+        .dropdown-btn {
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 260px;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            display: none;
+            z-index: 99999;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .dropdown a:hover {
+            background: #f2f7fc;
+            color: var(--mapei-blue);
+            padding-left: 28px;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.55),
+                    rgba(0, 0, 0, 0.55)),
+                url('');
+            background-size: cover;
+            background-position: center;
+            padding: 10px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--green);
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 45px 35px;
+            color: white;
+        }
+
+        .hero-icon {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            background: rgba(228, 0, 0, 0.12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            color: var(--green);
+        }
+
+        .hero h1 {
+            font-size: 2.7rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.08rem;
+        }
+
+        /* TEXTO */
+        .hero-text {
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .hero-text h2 {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            font-weight: 400;
+            color: #dbefff;
+        }
+
+        .hero-text p {
+            margin-top: 25px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* CONTENIDO */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--mapei-blue);
+            margin-bottom: 40px;
+            font-size: 2rem;
+        }
+
+        /* TARJETAS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .05);
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, .12);
+        }
+
+        .card i {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--text-dark);
+        }
+
+        .card ul {
+            padding-left: 20px;
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .branding i {
+            color: var(--mapei-blue);
+        }
+
+        .digital i {
+            color: #26a69a;
+        }
+
+        .events i {
+            color: #ef5350;
+        }
+
+        .product i {
+            color: #ab47bc;
+        }
+
+        .carrusel {
+    width: 100%;
+    max-width: 1200px;
+    height: 450px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.slider {
+    display: flex;
+    width: 1000%;
+    height: 100%;
+    animation: deslizar 40s infinite;
+}
+
+.slider img {
+    width: 10%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes deslizar {
+    0%, 8% {
+        transform: translateX(0%);
+    }
+    10%, 18% {
+        transform: translateX(-10%);
+    }
+    20%, 28% {
+        transform: translateX(-20%);
+    }
+    30%, 38% {
+        transform: translateX(-30%);
+    }
+    40%, 48% {
+        transform: translateX(-40%);
+    }
+    50%, 58% {
+        transform: translateX(-50%);
+    }
+    60%, 68% {
+        transform: translateX(-60%);
+    }
+    70%, 78% {
+        transform: translateX(-70%);
+    }
+    80%, 88% {
+        transform: translateX(-80%);
+    }
+    90%, 98% {
+        transform: translateX(-90%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+        /* STATS */
+        .stats {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+        }
+
+        .stat h3 {
+            color: var(--mapei-blue);
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+        }
+
+        .stat p {
+            margin: 0;
+            color: var(--mapei-gray);
+            font-size: 0.95rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--mapei-blue);
+            color: white;
+            padding: 25px;
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media(max-width: 1100px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 768px) {
+
+            .nav-menu {
+                flex-direction: column;
+            }
+
+            .dropdown {
+                position: static;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header>
+
+        <div class="nav-container">
+
+            <ul class="nav-menu">
+
+                <!-- HSEQ -->
+                <li>
+                    <a href="hseq.html" class="nav-link active">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        HSEQ
+                    </a>
+                </li>
+
+                <!-- FINANZAS -->
+                <li class="nav-item">
+
+                    <div class="nav-link dropdown-btn">
+
+                        <i class="fa-solid fa-chart-pie"></i>
+
+                        Finanzas
+
+                        <i class="fa-solid fa-chevron-down"></i>
+
+                    </div>
+
+                    <div class="dropdown">
+
+                        <a href="contabilidad.html">
+                            <i class="fa-solid fa-calculator"></i>
+                            Contabilidad
+                        </a>
+
+                        <a href="finanzas.html">
+                            <i class="fa-solid fa-coins"></i>
+                            Finanzas
+                        </a>
+
+                        <a href="sistema_ti.html">
+                            <i class="fa-solid fa-desktop"></i>
+                            Sistemas TI
+                        </a>
+
+                        <!-- EN CONSTRUCCION -->
+                        <a href="pag_const.html">
+                            <i class="fa-solid fa-building-columns"></i>
+                            Tesorería
+                        </a>
+
+                        <a href="pag_const.html">
+                            <i class="fa-solid fa-percent"></i>
+                            Cartera
+                        </a>
+
+                        <a href="pag_const.html">
+                            <i class="fa-solid fa-broom"></i>
+                            Servicios Compartidos
+                        </a>
+
+                    </div>
+
+                </li>
+
+                <!-- JURIDICA -->
+                <li>
+                    <a href="juridica.html" class="nav-link">
+                        <i class="fa-solid fa-gavel"></i>
+                        Jurídica
+                    </a>
+                </li>
+
+                <!-- MERCADEO -->
+                <li>
+                    <a href="mercadeo.html" class="nav-link">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        Mercadeo
+                    </a>
+                </li>
+
+                <!-- OPERACIONES -->
+                <li>
+                    <a href="operaciones.html" class="nav-link">
+                        <i class="fa-solid fa-gears"></i>
+                        Operaciones
+                    </a>
+                </li>
+
+                <!-- RRHH -->
+                <li>
+                    <a href="pag_const.html" class="nav-link">
+                        <i class="fa-solid fa-users"></i>
+                        RRHH
+                    </a>
+                </li>
+
+                <!-- VENTAS -->
+                <li>
+                    <a href="ventas.html" class="nav-link">
+                        <i class="fa-solid fa-comments-dollar"></i>
+                        Ventas
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </header>
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <!-- TEXTO -->
+            <div class="hero-text">
+                <h1><i class="fa-solid fa-bullhorn"></i> Área de Mercadeo</h1>
+
+                <h2>MAPEI COLOMBIA</h2>
+
+                <p>
+                    Potenciamos la presencia de Mapei en Colombia a través de estrategias innovadoras,
+                    posicionamiento de marca, soporte al canal de ventas y experiencias memorables
+                    para nuestros clientes.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="carrusel">
+            <div class="slider">
+                <img src="https://cdnmedia.mapei.com/images/projects-images/en-83f1f969-5ba0-4842-8a5f-ff1f0b15a6d5.jpg.tmb-mapeiprjga.jpg?Culture=en&sfvrsn=18e152e2_9" alt="Imagen 1">
+                <img src="https://cdnmedia.mapei.com/images/projects-images-malysia/terengganu-drawbridge-2-jpg.tmb-mapeiprjga.jpg?Culture=en&sfvrsn=f7aac57e_1" alt="Imagen 2">
+                <img src="https://cdnmedia.mapei.com/images/projects-images-poland/lisewski-fot-wincenty-miros-jpg.tmb-mapeiprjga.jpg?Culture=en&sfvrsn=bb518cc4_1" alt="Imagen 3">
+                <img src="https://cdnmedia.mapei.com/images/projects-images-new-zealand/20160128-121448-jpg.tmb-mapeiprjga.jpg?Culture=en&sfvrsn=fbbde8cd_1" alt="Imagen 4">
+                <img src="https://cdnmedia.mapei.com/images/projects-images/dji-0254-jpg.tmb-mapeiprjga.jpg?Culture=en&sfvrsn=b2a64220_1" alt="Imagen 5">
+                <img src="https://cdnmedia.mapei.com/images/projects-images/it-4b75101c-e3f4-4599-b06e-422ea2e53494.jpg.tmb-mapeiprjga.jpg?Culture=it&sfvrsn=8cf7272e_9" alt="Imagen 6">
+                <img src="https://cdnmedia.mapei.com/images/projects-images-colombia/canaveralejo-23-jpg.tmb-mapeiprjga.jpg?Culture=en&sfvrsn=e129c94_1" alt="Imagen 7">
+                <img src="https://cdnmedia.mapei.com/images/projects-images/dsc02730-jpg.tmb-mapeiprjga.jpg?Culture=en&sfvrsn=effeddd3_1" alt="Imagen 8">
+                <img src="https://cdnmedia.mapei.com/images/projects-images-hungary/citadella-falazatfelujitas-10.jpg.tmb-mapeiprjga.jpg?Culture=en&sfvrsn=9b6307b7_1" alt="Imagen 9">
+                <img src="imagenes/img10.jpg" alt="Imagen 10">
+            </div>
+        </section>
+
+
+    <section class="container">
+        <h2 class="section-title">Objetivos estratégicos</h2>
+
+        <div class="cards">
+
+            <div class="card branding" onclick="window.location.href='branding.html'">
+                <i class="fa-solid fa-copyright"></i>
+                <h3>Branding y Marca</h3>
+                <ul>
+                    <li>Líneas de guía corporativas</li>
+                    <li>Material POP y Merchandising</li>
+                    <li>Identidad visual en puntos de venta</li>
+                    <li>Patrocinios y Relaciones Públicas</li>
+                </ul>
+            </div>
+
+            <div class="card digital" onclick="window.location.href='digital.html'">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h3>Marketing Digital</h3>
+                <ul>
+                    <li>Redes Sociales y Comunidad</li>
+                    <li>Sitio Web y SEO Corporativo</li>
+                    <li>E-mail Marketing para Clientes</li>
+                    <li>Pauta Digital y Leads</li>
+                </ul>
+            </div>
+
+            <div class="card events" onclick="window.location.href='eventos.html'">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3>Eventos y Experiencias</h3>
+                <ul>
+                    <li>Ferias del sector (Expoconstrucción)</li>
+                    <li>Lanzamientos de producto</li>
+                    <li>Rutas técnicas con instaladores</li>
+                    <li>Seminarios y Webinars</li>
+                </ul>
+            </div>
+
+            <div class="card product" onclick="window.location.href='productos.html'">
+                <i class="fa-solid fa-box-open"></i>
+                <h3>Inteligencia de Producto</h3>
+                <ul>
+                    <li>Fichas técnicas y Catálogos</li>
+                    <li>Estudios de mercado y Competencia</li>
+                    <li>Muestras y Exhibidores de producto</li>
+                    <li>Estrategia de pricing de apoyo</li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <section class="container">
+            <h2 class="section-title">Soporte a Líneas de Negocio</h2>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <h3>Cerámicos y Piedras</h3>
+                    <p>Adhesivos y boquillas de alta tecnología.</p>
+                </div>
+
+                <div class="stat">
+                    <h3>Construcción</h3>
+                    <p>Aditivos para concreto e impermeabilizantes.</p>
+                </div>
+
+                <div class="stat">
+                    <h3>Pisos Resinosos y Madera</h3>
+                    <p>Soluciones industriales y decorativas.</p>
+                </div>
+
+                <div class="stat">
+                    <h3>Infraestructura</h3>
+                    <p>Grandes obras y proyectos de ingeniería.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <footer>
+            © 2026 Mapei Colombia · Área de Mercadeo
+        </footer>
+
+</body>
+
+</html>

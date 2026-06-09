@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Finanzas | Intranet Mapei Colombia</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://www.mapei.com/favicon.ico">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+
+        :root {
+
+            --mapei-blue: #007CC3;
+            --mapei-blue-hover: #0065a2;
+
+            --mapei-light: #f4f7fb;
+
+            --finance-gold: #d4af37;
+
+            --text-dark: #1f2937;
+
+            --white: #ffffff;
+        }
+
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+
+            background: var(--mapei-light);
+
+            color: var(--text-dark);
+
+            line-height: 1.6;
+        }
+
+        /* =================================
+           NAVBAR
+        ================================= */
+
+        header {
+
+            background: var(--mapei-blue);
+
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+        .nav-container {
+
+            max-width: 1350px;
+
+            margin: auto;
+
+            padding: 18px 25px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+        .nav-menu {
+
+            display: flex;
+
+            list-style: none;
+
+            gap: 12px;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            justify-content: center;
+        }
+
+        .nav-item {
+
+            position: relative;
+        }
+
+        .nav-link {
+
+            text-decoration: none;
+
+            color: white;
+
+            font-weight: 600;
+
+            font-size: 0.95rem;
+
+            padding: 10px 16px;
+
+            border-radius: 20px;
+
+            transition: 0.25s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+
+            background: rgba(255,255,255,0.18);
+        }
+
+        /* =================================
+           DROPDOWN
+        ================================= */
+
+        .dropdown {
+
+            position: absolute;
+
+            top: 100%;
+
+            left: 0;
+
+            background: white;
+
+            min-width: 230px;
+
+            border-radius: 14px;
+
+            padding: 10px 0;
+
+            display: none;
+
+            margin-top: 10px;
+
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+
+            border: 1px solid #e2e8f0;
+        }
+
+        .dropdown a {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px 20px;
+
+            text-decoration: none;
+
+            color: var(--text-dark);
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .dropdown a:hover {
+
+            background: #f4f7fb;
+
+            color: var(--mapei-blue);
+
+            padding-left: 25px;
+        }
+
+        .nav-item:hover .dropdown {
+
+            display: block;
+        }
+
+        /* =================================
+           HERO FINANZAS
+        ================================= */
+
+        .hero-finanzas {
+
+            position: relative;
+
+            color: white;
+
+            padding: 70px 20px;
+
+            text-align: center;
+
+            border-bottom: 5px solid var(--finance-gold);
+
+            background:
+                linear-gradient(
+                    rgba(0, 35, 60, 0.65),
+                    rgba(0, 35, 60, 0.65)
+                ),
+                url("https://images.unsplash.com/photo-1554224155-8d04cb21cd6c");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+        }
+
+        .hero-finanzas i {
+
+            font-size: 3.5rem;
+
+            margin-bottom: 15px;
+
+            color: var(--finance-gold);
+
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-finanzas h1 {
+
+            font-size: 2.6rem;
+
+            margin-bottom: 12px;
+
+            font-weight: 700;
+
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+
+        .hero-finanzas p {
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+            font-size: 1.1rem;
+
+            opacity: 0.95;
+
+            line-height: 1.7;
+
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        /* =================================
+           CONTENEDOR
+        ================================= */
+
+        .container {
+
+            max-width: 1350px;
+
+            margin: auto;
+
+            padding: 50px 20px;
+        }
+
+        .section-title {
+
+            text-align: center;
+
+            color: var(--mapei-blue);
+
+            margin-bottom: 40px;
+
+            font-size: 2rem;
+
+            font-weight: 700;
+        }
+
+        /* =================================
+           CARDS
+        ================================= */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 25px;
+        }
+
+        .card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 28px 24px;
+
+            box-shadow: 0 10px 25px rgba(0,0,0,.08);
+
+            cursor: pointer;
+
+            transition: .3s ease;
+
+            border-top: 5px solid var(--mapei-blue);
+        }
+
+        .card:hover {
+
+            transform: translateY(-8px);
+
+            box-shadow: 0 18px 35px rgba(0,0,0,.14);
+        }
+
+        .card-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 50%;
+
+            background: #eef6fc;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 18px;
+        }
+
+        .card-icon i {
+
+            font-size: 2rem;
+
+            color: var(--mapei-blue);
+        }
+
+        .card h3 {
+
+            font-size: 1.15rem;
+
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+
+            padding-left: 18px;
+
+            line-height: 1.8;
+
+            font-size: 0.92rem;
+
+            color: #555;
+        }
+
+        /* =================================
+           GALERÍA
+        ================================= */
+
+        .gallery {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 20px;
+        }
+
+        .gallery img {
+
+            width: 100%;
+
+            height: 220px;
+
+            object-fit: cover;
+
+            border-radius: 18px;
+
+            transition: 0.3s ease;
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .gallery img:hover {
+
+            transform: scale(1.02);
+        }
+
+        /* =================================
+           STATS
+        ================================= */
+
+        .stats {
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 24px;
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 25px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .stat i {
+
+            font-size: 2.5rem;
+
+            color: var(--mapei-blue);
+
+            margin-bottom: 15px;
+        }
+
+        .stat h3 {
+
+            color: var(--mapei-blue);
+
+            margin-bottom: 10px;
+
+            font-size: 1.3rem;
+        }
+
+        /* =================================
+           FOOTER
+        ================================= */
+
+        footer {
+
+            background: var(--mapei-blue);
+
+            color: white;
+
+            padding: 25px;
+
+            margin-top: 60px;
+
+            text-align: center;
+        }
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 768px) {
+
+            .hero-finanzas {
+
+                padding: 60px 20px;
+            }
+
+            .hero-finanzas h1 {
+
+                font-size: 2rem;
+            }
+
+            .hero-finanzas p {
+
+                font-size: 1rem;
+            }
+
+            .nav-menu {
+
+                display: none;
+            }
+
+            .cards {
+
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+
+                padding: 30px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+
+        <div class="nav-container">
+
+            <ul class="nav-menu">
+
+                <li>
+                    <a href="index.html" class="nav-link">
+                        <i class="fa-solid fa-house"></i>
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="hseq.html" class="nav-link">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        HSEQ
+                    </a>
+                </li>
+
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link active">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        Finanzas
+                        <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+                    </a>
+
+                    <div class="dropdown">
+
+                        <a href="contabilidad.html">
+                            <i class="fa-solid fa-calculator"></i>
+                            Contabilidad
+                        </a>
+
+                        <a href="tesoreria.html">
+                            <i class="fa-solid fa-building-columns"></i>
+                            Tesorería
+                        </a>
+
+                        <a href="sistemas_ti.html">
+                            <i class="fa-solid fa-desktop"></i>
+                            Sistemas TI
+                        </a>
+
+                        <a href="cartera.html">
+                            <i class="fa-solid fa-percent"></i>
+                            Cartera
+                        </a>
+
+                        <a href="servicios_compartidos.html">
+                            <i class="fa-solid fa-broom"></i>
+                            Servicios Compartidos
+                        </a>
+
+                    </div>
+
+                </li>
+
+                <li>
+                    <a href="juridica.html" class="nav-link">
+                        <i class="fa-solid fa-gavel"></i>
+                        Jurídica
+                    </a>
+                </li>
+
+                <li>
+                    <a href="mercadeo.html" class="nav-link">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        Mercadeo
+                    </a>
+                </li>
+
+                <li>
+                    <a href="operaciones.html" class="nav-link">
+                        <i class="fa-solid fa-gears"></i>
+                        Operaciones
+                    </a>
+                </li>
+
+                <li>
+                    <a href="rrhh.html" class="nav-link">
+                        <i class="fa-solid fa-users"></i>
+                        RRHH
+                    </a>
+                </li>
+
+                <li>
+                    <a href="ventas.html" class="nav-link">
+                        <i class="fa-solid fa-comments-dollar"></i>
+                        Ventas
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-finanzas">
+
+        <i class="fa-solid fa-chart-pie"></i>
+
+        <h1>Área Financiera</h1>
+
+        <p>
+            Garantizamos la estabilidad económica,
+            la transparencia transaccional y la optimización
+            de los recursos financieros para asegurar el crecimiento
+            sostenible de Mapei Colombia.
+        </p>
+
+    </section>
+
+    <!-- SUBÁREAS -->
+    <section class="container">
+
+        <h2 class="section-title">
+            Nuestras Subáreas
+        </h2>
+
+        <div class="cards">
+
+            <div class="card" onclick="window.location.href='contabilidad.html'">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+
+                <h3>Contabilidad</h3>
+
+                <ul>
+                    <li>Estados financieros</li>
+                    <li>Cierre mensual</li>
+                    <li>Cuentas por pagar</li>
+                    <li>Cuentas por cobrar</li>
+                </ul>
+
+            </div>
+
+            <div class="card" onclick="window.location.href='tesoreria.html'">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <h3>Tesorería</h3>
+
+                <ul>
+                    <li>Flujo de caja</li>
+                    <li>Pagos proveedores</li>
+                    <li>Enlaces bancarios</li>
+                    <li>Gestión de nómina</li>
+                </ul>
+
+            </div>
+
+            <div class="card" onclick="window.location.href='sistemas_ti.html'">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-desktop"></i>
+                </div>
+
+                <h3>Sistemas TI</h3>
+
+                <ul>
+                    <li>Inventario equipos</li>
+                    <li>Soporte técnico</li>
+                    <li>Redes y servidores</li>
+                    <li>Backups y resguardos</li>
+                </ul>
+
+            </div>
+
+            <div class="card" onclick="window.location.href='cartera.html'">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-percent"></i>
+                </div>
+
+                <h3>Cartera</h3>
+
+                <ul>
+                    <li>Control de créditos</li>
+                    <li>Gestión recaudos</li>
+                    <li>Análisis de riesgo</li>
+                    <li>Reportes de cobro</li>
+                </ul>
+
+            </div>
+
+            <div class="card" onclick="window.location.href='servicios_compartidos.html'">
+
+                <div class="card-icon">
+                    <i class="fa-solid fa-broom"></i>
+                </div>
+
+                <h3>Servicios Compartidos</h3>
+
+                <ul>
+                    <li>Servicios internos</li>
+                    <li>Mantenimiento</li>
+                    <li>Soporte operativo</li>
+                    <li>Gestión de compras</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="container">
+
+        <h2 class="section-title">
+            Finanzas en Acción
+        </h2>
+
+        <div class="gallery">
+
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c"
+                alt="Finanzas">
+
+            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44"
+                alt="Balances">
+
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
+                alt="Corporativo">
+
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"
+                alt="Reunión">
+
+        </div>
+
+    </section>
+
+    <!-- GESTIÓN -->
+    <section class="container">
+
+        <h2 class="section-title">
+            Gestión Financiera
+        </h2>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <h3>Eficiencia</h3>
+
+                <p>
+                    Optimización de recursos financieros.
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <i class="fa-solid fa-scale-balanced"></i>
+
+                <h3>Cumplimiento</h3>
+
+                <p>
+                    Normativa legal y fiscal.
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                <h3>Transparencia</h3>
+
+                <p>
+                    Reportes claros y confiables.
+                </p>
+
+            </div>
+
+            <div class="stat">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+                <h3>Estrategia</h3>
+
+                <p>
+                    Soporte para decisiones clave.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+
+        © 2026 Mapei Colombia · Área Financiera
+
+    </footer>
+
+</body>
+
+</html>
+
